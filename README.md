@@ -56,6 +56,7 @@ Para que funcione correctamente en cualquier dispositivo hay que modificar el co
 # Conclusión
 Este proyecto impulsa la robotica y la vision artificial para soluciones a problematicas en el área tecnologica. 
 
-#Notas
+# Notas
 -Recomiendo personalmente eliminar la carpeta "venv" encargada del entorno virtual para el codigo de python y crearlo de forma independiente para evitar conflictos
+
 -Tambien es posible probar los codigos de forma individual. Para poder ver si esta funcionando correctamente el codigo de python, debajo del arreglo de datos que nos indica cuales dedos estan levantados podemos agregar la siguiente linea de codigo `print(datos)`. Esto hara que en nuestra terminal se visualice el arreglo de los dedos que levantamos al correr el programa. Para el caso del codigo arduino, podemos abrir el monitor serial e ingresar los valores individualmente y ver si los servomotrores responden correctamente. Por ejemplo: "00000" (ningun dedo levantado), "11111" (todos los dedos levantados).
