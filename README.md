@@ -11,6 +11,7 @@
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
 - [Desarrolladores del Proyecto](#desarrolladores-del-proyecto)
 - [Conclusión](#conclusión)
+- [Notas](#notas)
 
 # Descripción del proyecto
 
@@ -35,6 +36,12 @@ Para pode probarlo es necesario contar con las siguientes librerias de python in
 🛠️ Abre y ejecuta el proyecto
 Para probarlo solo es necesario ejecutar el codigo de Python y el codigo de arduino conectado a los respectivos servomotores y los servomotores se moveran dependiendo del dedo que se levante o se agache.
 
+Para que funcione correctamente en cualquier dispositivo hay que modificar el codigo teniendo las siguientes consideraciones:
+- Entorno virtual activado: El entorno virtual tiene la funcion de no instalar las librerias en el proyecto como tal, sino en un entorno que se activa y se desactiva segun lo quieras usar o no, esto se realiza para evitar conflictos al momento de ejecutar el codigo.
+- El puerto COM: El puerto COM cambia dependiendo del microntrolados y computadora donde lo conectes, por lo que tienes que verificar en que puerto esta conectado y cambiarlo en el codigo.
+- Tambien para poder utilizar alguna otra camara, en la linea de codigo `cap = cv2.VideoCapture(0)` cambiamos el argumento "0", por 1 o 2, y probar si es la camara que queremos utilizar. 
+
+
 # Tecnologías utilizadas
 
 - **OpenCV**
@@ -48,3 +55,7 @@ Para probarlo solo es necesario ejecutar el codigo de Python y el codigo de ardu
 
 # Conclusión
 Este proyecto impulsa la robotica y la vision artificial para soluciones a problematicas en el área tecnologica. 
+
+#Notas
+-Recomiendo personalmente eliminar la carpeta "venv" encargada del entorno virtual para el codigo de python y crearlo de forma independiente para evitar conflictos
+-Tambien es posible probar los codigos de forma individual. Para poder ver si esta funcionando correctamente el codigo de python, debajo del arreglo de datos que nos indica cuales dedos estan levantados podemos agregar la siguiente linea de codigo `print(datos)`. Esto hara que en nuestra terminal se visualice el arreglo de los dedos que levantamos al correr el programa. Para el caso del codigo arduino, podemos abrir el monitor serial e ingresar los valores individualmente y ver si los servomotrores responden correctamente. Por ejemplo: "00000" (ningun dedo levantado), "11111" (todos los dedos levantados).
