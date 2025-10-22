@@ -3,13 +3,13 @@ from cvzone.HandTrackingModule import HandDetector
 from serial import Serial, SerialException
 import time
 
-#arduino = None
-#try:
-#    arduino = Serial("COM3", 9600, timeout=0.5)  # Ajusta el puerto COM según tu Arduino
-#   time.sleep(2)  # Espera a que el puerto se estabilice
-#except SerialException as e:
-#    print(f"Error al abrir el puerto serial: {e}")
-#    arduino = None
+arduino = None
+try:
+    arduino = Serial("COM5", 9600, timeout=0.5)  # Ajusta el puerto COM según tu Arduino
+    time.sleep(2)  # Espera a que el puerto se estabilice
+except SerialException as e:
+    print(f"Error al abrir el puerto serial: {e}")
+    arduino = None
 
 # Iniciar cámara
 cap = cv2.VideoCapture(0)  # Cambia a 0 si tu cámara principal es otra
@@ -40,17 +40,16 @@ try:
             mano = manos[0]
             dedos = detector.fingersUp(mano)
             datos = "".join(map(str, dedos)) + "\n"
-            print (datos)
             
-            #if arduino is not None:
-             #   try:
-              #      arduino.write(datos.encode())
-               #     arduino.flush()
-                #    last_send_time = current_time
-               # except SerialException as e:
-                #    print(f"Error serial: {e}")
-                 #   arduino.close()
-                  #  arduino = None
+            if arduino is not None:
+                try:
+                    arduino.write(datos.encode())
+                    arduino.flush()
+                    last_send_time = current_time
+                except SerialException as e:
+                    print(f"Error serial: {e}")
+                    arduino.close()
+                    arduino = None
 
         cv2.imshow('Detección de manos', framePuntos)
         if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -59,5 +58,5 @@ try:
 finally:
     cap.release()
     cv2.destroyAllWindows()
-    #if arduino is not None:
-     #   arduino.close()
+    if arduino is not None:
+        arduino.close()
